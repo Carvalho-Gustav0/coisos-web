@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const LayoutLogin = styled.div`
     background-color: #0a011a;
     min-height: 300px;
-    top: 90px;
+    top: 104px;
     right: 0px;
     margin-right: 24px;
     width: 24%;

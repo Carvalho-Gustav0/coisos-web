@@ -40,7 +40,7 @@ export const Loggin = styled.p`
 `
 
 export const Content = styled.div`
-    top: 90px;
+    top: 104px;
     width: 60%;
     margin-left: 1%;
     position: absolute;
