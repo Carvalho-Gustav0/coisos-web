@@ -6,7 +6,7 @@ export const App = styled.div`
 `
 
 export const Header = styled.div`
-    width: 18%;
+    width: 16%;
     border-top-right-radius: 24px;
     background-color: #0a011a;
 `
