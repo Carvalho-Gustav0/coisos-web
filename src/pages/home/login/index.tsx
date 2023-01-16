@@ -1,42 +1,14 @@
 import * as Style from './style'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import api from '../../../services/api';
+import { UserContext } from '../../../contexts/UserContext';
 
 interface LogType {
-    titleContainer?: string;
-}
-
-interface LoginResponse {
-    id: string;
-    name: string;
-    token: string;
-    message: string;
+    titleContainer: string;
 }
 
 export function LoginRegister(props: LogType) {
-
-    const [ identifier, setIdentifier ] = useState<string>()
-    const [ name, setName ] = useState<string>()
-    const [ password, setPassword ] = useState<string>()
-    const [ message, setMessage ] = useState<string>()
-
-    function loginRegister() {
-        if (props.titleContainer === 'Login') {
-            api.post('users/login', {identifier, password}).then((response) => {
-                const data = response.data as LoginResponse
-                setMessage(data.message)
-            }).catch((error) => {
-                setMessage(error.response.data.error)
-            })
-        } else {
-            api.post('users/register', {name, identifier, password}).then((response) => {
-                const data = response.data as LoginResponse
-                setMessage(data.message)
-            }).catch((error) => {
-                setMessage(error.response.data.error)
-            })
-        }
-    }
+    const { message, setName, setIdentifier, setPassword, loginOrRegister } = useContext(UserContext)
 
     let nameClass = ''
 
@@ -54,7 +26,7 @@ export function LoginRegister(props: LogType) {
             )}
             <Style.InputLogin type="text" placeholder='Type your identifier' onChange={(ev) => setIdentifier(ev.target.value)}/>
             <Style.InputLogin type="password" placeholder='Type your password' onChange={(ev) => setPassword(ev.target.value)}/>
-            <Style.ButtonLogin className={nameClass} type='submit' onClick={loginRegister}>
+            <Style.ButtonLogin className={nameClass} type='submit' onClick={() => loginOrRegister(props.titleContainer)}>
                 {props.titleContainer}
             </Style.ButtonLogin>
             <Style.Message>
