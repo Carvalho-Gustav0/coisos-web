@@ -9,20 +9,22 @@ export default function App() {
   return (
     <Styled.App>
       <BrowserRouter>
-      
-        <Styled.Header>
-            <Link to={'/'} style={{ textDecoration: 'none' }}>
-              <Styled.Title>
-                Coisos
-              </Styled.Title>
-            </Link>
-
-            <Styled.Menu>
-              <ItemMenu path={'/home'} name={'Home'}/>
-              <ItemMenu path={'/rpg'} name={'Rpg'}/>
-              <ItemMenu path={'/arquivos'} name={'Arquivos'}/>
-            </Styled.Menu>
-        </Styled.Header>
+        
+        <Styled.Container>
+          <Styled.Header>
+              <Link to={'/'} style={{ textDecoration: 'none' }}>
+                <Styled.Title>
+                  Coisos
+                </Styled.Title>
+              </Link>
+          </Styled.Header>
+          
+          <Styled.Menu>
+                <ItemMenu path={'/home'} name={'Home'}/>
+                <ItemMenu path={'/rpg'} name={'Rpg'}/>
+                <ItemMenu path={'/arquivos'} name={'Arquivos'}/>
+          </Styled.Menu>
+        </Styled.Container>
 
         <Routes>
           {["/home", "/"].map((value, index) => 
