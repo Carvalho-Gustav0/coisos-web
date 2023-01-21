@@ -67,23 +67,32 @@ export const UserContextProvider = ({children}: UserContextPropsType ) => {
     const [ user, setUser ] = useState<UserType>(initialValue.user)
     const [ message, setMessage ] = useState<string>(initialValue.message)
 
-    const loginOrRegister = (titleContainer?: string) => {
+    const loginOrRegister = async (titleContainer?: string) => {
         if (titleContainer === 'Login') {
-            api.post('users/login', {identifier, password}).then((response) => {
-                const data = response.data as LoginResponse
-                const user = {
-                    id: data.id,
-                    name: data.name,
-                    identifier: data.identifier,
-                    token: data.token
+            await api.post('users/login', {identifier, password}).then((response) => {
+                if (!response) {
+                    setMessage('Error on connect to server')
+                } else {
+                    const data = response.data as LoginResponse
+                    const user = {
+                        id: data.id,
+                        name: data.name,
+                        identifier: data.identifier,
+                        token: data.token
+                    }
+
+                    setUser(user)
+                    setMessage(data.message)
                 }
-                setUser(user)
-                setMessage(data.message)
             }).catch((error) => {
-                setMessage(error.response.data.error)
+                if (error.code === 'ERR_NETWORK') {
+                    setMessage('Error on connect to server')
+                } else {
+                    setMessage(error.response.data.error)
+                }
             })
         } else {
-            api.post('users/register', {name, identifier, password}).then((response) => {
+            await api.post('users/register', {name, identifier, password}).then((response) => {
                 const data = response.data as LoginResponse
                 const user = {
                     id: data.id,
@@ -94,7 +103,11 @@ export const UserContextProvider = ({children}: UserContextPropsType ) => {
                 setUser(user)
                 setMessage(data.message)
             }).catch((error) => {
-                setMessage(error.response.data.error)
+                if (error.code === 'ERR_NETWORK') {
+                    setMessage('Error on connect to server')
+                } else {
+                    setMessage(error.response.data.error)
+                }
             })
         }
     }

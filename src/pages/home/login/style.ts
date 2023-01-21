@@ -11,7 +11,6 @@ export const LayoutLogin = styled.div`
     border-radius: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
 `
 
@@ -22,8 +21,18 @@ export const TitleContainer = styled.div`
     margin-top: 30px;
 `
 
-export const InputLogin = styled.input`
+export const Form = styled.form`
     width: 80%;
+    height: 232px;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const InputLogin = styled.input`
+    width: 100%;
     height: 36px;
     border-radius: 24px;
 
@@ -42,9 +51,9 @@ export const InputLogin = styled.input`
     }
 `
 
-export const ButtonLogin = styled.p`
+export const ButtonLogin = styled.button`
     color: #D8D8D8;
-    width: 24%;
+    width: 36%;
     padding: 8px;
     cursor: pointer;
     text-align: center;
@@ -55,6 +64,8 @@ export const ButtonLogin = styled.p`
 
     border-top: 2px solid purple;
     border-bottom: 2px solid purple;
+    border-left: 0px;
+    border-right: 0px;
 
     background-color: #0a011a;
 
@@ -66,15 +77,10 @@ export const ButtonLogin = styled.p`
         color: #A020F0;
         background-color: rgb(160, 32, 240, 0.1);
     }
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `
 
 export const Message = styled.div`
     color: #D8D8D8;
     text-align: center;
     font-size: medium;
-    margin-bottom: 6px;
 `

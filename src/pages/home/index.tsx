@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../../contexts/UserContext'
 import { LoginRegister } from './login'
 import * as Style from './style'
 
 export default function Home() {
+    const { setMessage} = useContext(UserContext)
 
     const [ logon, setLogon ] = useState<boolean>()
     const [ register, setRegister ] = useState<boolean>()
@@ -23,6 +25,10 @@ export default function Home() {
             return <LoginRegister titleContainer={loginRegister}/>
         }
     }
+
+    useEffect(() => {
+        setMessage('')
+    }, [logon])
 
     return (
         <Style.Home>
