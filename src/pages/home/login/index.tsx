@@ -26,7 +26,7 @@ export function LoginRegister(props: LogType) {
             )}
             <Style.InputLogin type="text" placeholder='Type your identifier' onChange={(ev) => setIdentifier(ev.target.value)}/>
             <Style.InputLogin type="password" placeholder='Type your password' onChange={(ev) => setPassword(ev.target.value)}/>
-            <Style.ButtonLogin className={nameClass} type='submit' onClick={() => loginOrRegister(props.titleContainer)}>
+            <Style.ButtonLogin className={nameClass} onClick={() => loginOrRegister(props.titleContainer)}>
                 {props.titleContainer}
             </Style.ButtonLogin>
             <Style.Message>

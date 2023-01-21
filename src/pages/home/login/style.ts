@@ -42,17 +42,19 @@ export const InputLogin = styled.input`
     }
 `
 
-export const ButtonLogin = styled.button`
-    width: 54%;
-    height: 36px;
-    border-radius: 24px;
-    margin-bottom: 12px;
-    cursor: pointer;
-
+export const ButtonLogin = styled.p`
     color: #D8D8D8;
-    font-size: medium;
+    width: 24%;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin-right: 10px;
+    font-size: large;
+    border-radius: 32px;
+    background-color: #0a011a;
 
-    border: 2px solid purple;
+    border-top: 2px solid purple;
+    border-bottom: 2px solid purple;
 
     background-color: #0a011a;
 

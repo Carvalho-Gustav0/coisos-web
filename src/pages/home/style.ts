@@ -28,10 +28,10 @@ export const Loggin = styled.p`
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     &:hover {
         color: #A020F0;
@@ -42,7 +42,7 @@ export const Loggin = styled.p`
 export const Content = styled.div`
     top: 104px;
     width: 60%;
-    font-size: xx-large;
+    font-size: large;
     margin-left: 1%;
     position: absolute;
     background-color: #0a011a;
@@ -53,4 +53,8 @@ export const Content = styled.div`
     &.decrease {
         width: 48%;
     }
+`
+
+export const RPG = styled.b`
+    color: purple;
 `
