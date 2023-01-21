@@ -42,11 +42,11 @@ export const Loggin = styled.p`
 export const Content = styled.div`
     top: 104px;
     width: 60%;
+    font-size: xx-large;
     margin-left: 1%;
     position: absolute;
     background-color: #0a011a;
     color: #D8D8D8;
-    font-size: large;
     padding: 18px;
     border-radius: 24px;
 

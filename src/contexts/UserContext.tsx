@@ -33,7 +33,7 @@ interface UserContextType {
     setUser: (newState: UserType) => void,
     message: string,
     setMessage: (newState: string) => void,
-    loginOrRegister: (titleContainer: string) => void,
+    loginOrRegister: (titleContainer?: string) => void,
 }
 
 const initialValue = {
@@ -67,7 +67,7 @@ export const UserContextProvider = ({children}: UserContextPropsType ) => {
     const [ user, setUser ] = useState<UserType>(initialValue.user)
     const [ message, setMessage ] = useState<string>(initialValue.message)
 
-    const loginOrRegister = (titleContainer: string) => {
+    const loginOrRegister = (titleContainer?: string) => {
         if (titleContainer === 'Login') {
             api.post('users/login', {identifier, password}).then((response) => {
                 const data = response.data as LoginResponse

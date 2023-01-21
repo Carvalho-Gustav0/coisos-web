@@ -4,7 +4,7 @@ import api from '../../../services/api';
 import { UserContext } from '../../../contexts/UserContext';
 
 interface LogType {
-    titleContainer: string;
+    titleContainer?: string;
 }
 
 export function LoginRegister(props: LogType) {
