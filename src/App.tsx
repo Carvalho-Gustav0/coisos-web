@@ -32,8 +32,8 @@ export default function App() {
               <Route key={index} path={value} element={<Home />}/>
             )}
             <Route path="/rpg" element={<Rpg />} />
+            <Route path="*" element={<>Página não encontrada</>} />
           </Routes>
-          
         </UserContextProvider>
       </BrowserRouter>
     </Styled.App>
