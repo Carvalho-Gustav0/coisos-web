@@ -1,5 +1,5 @@
-import { createContext, ReactNode,useState } from "react";
-import api from "../services/api";
+import { createContext, ReactNode, useState } from "react";
+import { api } from "../services/api";
 
 interface UserContextPropsType {
     children: ReactNode;
@@ -38,38 +38,38 @@ interface UserContextType {
 
 const initialValue = {
     name: '',
-    setName: () => {},
+    setName: () => { },
     identifier: '',
-    setIdentifier: () => {},
+    setIdentifier: () => { },
     password: '',
-    setPassword: () => {},
+    setPassword: () => { },
     userToken: '',
-    setUserToken: () => {},
+    setUserToken: () => { },
     user: {
         id: '',
         name: '',
         identifier: '',
         token: '',
     },
-    setUser: () => {},
+    setUser: () => { },
     message: '',
-    setMessage: () => {},
-    loginOrRegister: () => {},
+    setMessage: () => { },
+    loginOrRegister: () => { },
 }
 
 export const UserContext = createContext<UserContextType>(initialValue)
 
-export const UserContextProvider = ({children}: UserContextPropsType ) => {
-    const [ name, setName ] = useState<string>(initialValue.name)
-    const [ identifier, setIdentifier ] = useState<string>(initialValue.identifier)
-    const [ password, setPassword ] = useState<string>(initialValue.password)
-    const [ userToken, setUserToken ] = useState<string>(initialValue.userToken)
-    const [ user, setUser ] = useState<UserType>(initialValue.user)
-    const [ message, setMessage ] = useState<string>(initialValue.message)
+export const UserContextProvider = ({ children }: UserContextPropsType) => {
+    const [name, setName] = useState<string>(initialValue.name)
+    const [identifier, setIdentifier] = useState<string>(initialValue.identifier)
+    const [password, setPassword] = useState<string>(initialValue.password)
+    const [userToken, setUserToken] = useState<string>(initialValue.userToken)
+    const [user, setUser] = useState<UserType>(initialValue.user)
+    const [message, setMessage] = useState<string>(initialValue.message)
 
     const loginOrRegister = async (titleContainer?: string) => {
         if (titleContainer === 'Login') {
-            await api.post('users/login', {identifier, password}).then((response) => {
+            await api.post('users/login', { identifier, password }).then((response) => {
                 if (!response) {
                     setMessage('Error on connect to server')
                 } else {
@@ -92,7 +92,7 @@ export const UserContextProvider = ({children}: UserContextPropsType ) => {
                 }
             })
         } else {
-            await api.post('users/register', {name, identifier, password}).then((response) => {
+            await api.post('users/register', { name, identifier, password }).then((response) => {
                 const data = response.data as LoginResponse
                 const user = {
                     id: data.id,
@@ -113,9 +113,11 @@ export const UserContextProvider = ({children}: UserContextPropsType ) => {
     }
 
     return (
-        <UserContext.Provider value={{name, setName, identifier, setIdentifier,
+        <UserContext.Provider value={{
+            name, setName, identifier, setIdentifier,
             password, setPassword, userToken, setUserToken, user, setUser, message, setMessage,
-         loginOrRegister}}>
+            loginOrRegister
+        }}>
             {children}
         </UserContext.Provider>
     )

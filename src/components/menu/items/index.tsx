@@ -6,7 +6,7 @@ interface MenuType {
     name: string;
 }
 
-export default function ItemMenu(props: MenuType) {
+export function ItemMenu(props: MenuType) {
     return (
         <Style.ContainerItem>
             <Style.ItemMenu as={NavLink} to={props.path}>

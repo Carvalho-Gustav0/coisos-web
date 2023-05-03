@@ -1,6 +1,6 @@
 import * as Style from './style'
 import { useContext } from 'react';
-import { UserContext } from '../../../contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext';
 
 interface LogType {
     titleContainer?: string;

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../contexts/UserContext'
-import { LoginRegister } from './login'
+import { LoginRegister } from '../../components/login'
 import * as Style from './style'
 
-export default function Home() {
+export function Home() {
     const { setMessage} = useContext(UserContext)
 
     const [ logon, setLogon ] = useState<boolean>()

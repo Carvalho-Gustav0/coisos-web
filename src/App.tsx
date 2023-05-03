@@ -1,39 +1,45 @@
 import * as Styled from './style'
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 
-import Home from "./pages/home"
-import Rpg from "./pages/rpg";
-import ItemMenu from './components/menu/items';
+import { Home } from "./pages/home"
+import { Rpg } from "./pages/rpg";
+import { ItemMenu } from './components/menu/items';
 import { UserContextProvider } from './contexts/UserContext';
+import { Archives } from './pages/archives';
 
-export default function App() {
+export function App() {
   return (
     <Styled.App>
       <BrowserRouter>
         <UserContextProvider>
+
           <Styled.Container>
+
             <Styled.Header>
-                <Link to={'/'} style={{ textDecoration: 'none' }}>
-                  <Styled.Title>
-                    Coisos
-                  </Styled.Title>
-                </Link>
+              <Link to={'/'} style={{ textDecoration: 'none' }}>
+                <Styled.Title>
+                  Coisos
+                </Styled.Title>
+              </Link>
             </Styled.Header>
-            
+
             <Styled.Menu>
-                <ItemMenu path={'/home'} name={'Home'}/>
-                <ItemMenu path={'/rpg'} name={'Rpg'}/>
-                <ItemMenu path={'/arquivos'} name={'Arquivos'}/>
+              <ItemMenu path={'/home'} name={'Home'} />
+              <ItemMenu path={'/rpg'} name={'Rpg'} />
+              <ItemMenu path={'/arquivos'} name={'Arquivos'} />
             </Styled.Menu>
+
           </Styled.Container>
 
           <Routes>
-            {["/home", "/"].map((value, index) => 
-              <Route key={index} path={value} element={<Home />}/>
+            {["/home", "/"].map((value, index) =>
+              <Route key={index} path={value} element={<Home />} />
             )}
             <Route path="/rpg" element={<Rpg />} />
+            <Route path="/arquivos" element={<Archives />} />
             <Route path="*" element={<>Página não encontrada</>} />
           </Routes>
+
         </UserContextProvider>
       </BrowserRouter>
     </Styled.App>
