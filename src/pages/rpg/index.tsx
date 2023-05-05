@@ -1,9 +1,9 @@
-import * as Style from './style'
+import * as Styled from './style'
 
 export function Rpg() {
     return (
-        <Style.Rpg>
+        <Styled.Rpg>
             aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        </Style.Rpg>
+        </Styled.Rpg>
     )
 }

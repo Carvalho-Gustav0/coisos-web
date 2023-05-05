@@ -1,9 +1,9 @@
-import * as Style from './style'
+import * as Styled from './style'
 
 export function Archives() {
     return (
-        <Style.Archives>
+        <Styled.Archives>
             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        </Style.Archives>
+        </Styled.Archives>
     )
 }

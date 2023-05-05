@@ -33,7 +33,9 @@ interface UserContextType {
     setUser: (newState: UserType) => void,
     message: string,
     setMessage: (newState: string) => void,
-    loginOrRegister: (titleContainer?: string) => void,
+    dismissLayoutLogin: boolean,
+    setDismissLayoutLogin: (newState: boolean) => void,
+    loginOrRegister: (titleContainer: string) => void,
 }
 
 const initialValue = {
@@ -54,6 +56,8 @@ const initialValue = {
     setUser: () => { },
     message: '',
     setMessage: () => { },
+    dismissLayoutLogin: false,
+    setDismissLayoutLogin: () => { },
     loginOrRegister: () => { },
 }
 
@@ -66,8 +70,9 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
     const [userToken, setUserToken] = useState<string>(initialValue.userToken)
     const [user, setUser] = useState<UserType>(initialValue.user)
     const [message, setMessage] = useState<string>(initialValue.message)
+    const [dismissLayoutLogin, setDismissLayoutLogin] = useState<boolean>(initialValue.dismissLayoutLogin)
 
-    const loginOrRegister = async (titleContainer?: string) => {
+    const loginOrRegister = async (titleContainer: string) => {
         if (titleContainer === 'Login') {
             await api.post('users/login', { identifier, password }).then((response) => {
                 if (!response) {
@@ -91,7 +96,7 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
                     setMessage(error.response.data.error)
                 }
             })
-        } else {
+        } else if (titleContainer === 'Register') {
             await api.post('users/register', { name, identifier, password }).then((response) => {
                 const data = response.data as LoginResponse
                 const user = {
@@ -115,8 +120,8 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
     return (
         <UserContext.Provider value={{
             name, setName, identifier, setIdentifier,
-            password, setPassword, userToken, setUserToken, user, setUser, message, setMessage,
-            loginOrRegister
+            password, setPassword, userToken, setUserToken, user, setUser, message, setMessage, 
+            dismissLayoutLogin, setDismissLayoutLogin, loginOrRegister
         }}>
             {children}
         </UserContext.Provider>

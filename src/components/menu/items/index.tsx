@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import * as Style from './style'
+import * as Styled from './style'
 
 interface MenuType {
     path: string;
@@ -8,10 +8,10 @@ interface MenuType {
 
 export function ItemMenu(props: MenuType) {
     return (
-        <Style.ContainerItem>
-            <Style.ItemMenu as={NavLink} to={props.path}>
+        <Styled.ContainerItem>
+            <Styled.ItemMenu as={NavLink} to={props.path}>
                 {props.name}
-            </Style.ItemMenu>
-        </Style.ContainerItem>
+            </Styled.ItemMenu>
+        </Styled.ContainerItem>
     )
 }
