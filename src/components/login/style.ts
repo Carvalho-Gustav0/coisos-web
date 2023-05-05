@@ -10,8 +10,7 @@ export const LayoutLogin = styled.div`
     gap: 8px;
     padding: 0.5rem;
 
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-radius: 6px;
 
     ${props => `
         border-left: 1px solid ${props.theme.colors.gray_200};
@@ -24,6 +23,7 @@ export const LayoutLogin = styled.div`
 
 export const TitleContainer = styled.div`
     font-weight: 700;
+    text-align: center;
     color: ${props => props.theme.colors.black};   
 `
 

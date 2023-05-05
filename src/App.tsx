@@ -7,38 +7,42 @@ import { ItemMenu } from './components/menu/items';
 import { UserContextProvider } from './contexts/UserContext';
 import { Archives } from './pages/archives';
 import { Header } from './components/header';
+import { ModalProvider } from 'styled-react-modal'
 
 export function App() {
 
   return (
     <UserContextProvider>
       <BrowserRouter>
-        <Styled.App>
+        <ModalProvider>
 
-          <Header />
+          <Styled.App>
 
-          <Styled.ContainerMenu>
-            <Styled.Menu>
-              <ItemMenu path={'/home'} name={'Home'} />
-              <ItemMenu path={'/rpg'} name={'Rpg'} />
-              <ItemMenu path={'/arquivos'} name={'Arquivos'} />
-            </Styled.Menu>
+            <Header />
 
-          </Styled.ContainerMenu>
+            <Styled.ContainerMenu>
+              <Styled.Menu>
+                <ItemMenu path={'/home'} name={'Home'} />
+                <ItemMenu path={'/rpg'} name={'Rpg'} />
+                <ItemMenu path={'/arquivos'} name={'Arquivos'} />
+              </Styled.Menu>
 
-          <Styled.Container>
-            <Routes>
-              {["/home", "/"].map((value, index) =>
-                <Route key={index} path={value} element={<Home />} />
-              )}
-              <Route path="/rpg" element={<Rpg />} />
-              <Route path="/arquivos" element={<Archives />} />
-              <Route path="*" element={<>Página não encontrada</>} />
-            </Routes>
+            </Styled.ContainerMenu>
 
-          </Styled.Container>
+            <Styled.Container>
+              <Routes>
+                {["/home", "/"].map((value, index) =>
+                  <Route key={index} path={value} element={<Home />} />
+                )}
+                <Route path="/rpg" element={<Rpg />} />
+                <Route path="/arquivos" element={<Archives />} />
+                <Route path="*" element={<>Página não encontrada</>} />
+              </Routes>
 
-        </Styled.App>
+            </Styled.Container>
+
+          </Styled.App>
+        </ModalProvider>
       </BrowserRouter>
     </UserContextProvider >
   )

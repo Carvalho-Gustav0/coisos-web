@@ -6,16 +6,12 @@ import { UserContext } from '../../contexts/UserContext'
 
 export function Header() {
 
-    const [logon, setLogon] = useState<boolean>(false)
-    const [register, setRegister] = useState<boolean>(false)
     const { setMessage } = useContext(UserContext)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [titleConteiner, setTitleConteiner] = useState<string>('')
 
     function showContainerLogin() {
-        if (logon) {
-            return <LoginRegister titleContainer='Login' />
-        } else if (register) {
-            return <LoginRegister titleContainer='Register' />
-        }
+        setIsOpen(!isOpen)
     }
 
     return (
@@ -29,16 +25,19 @@ export function Header() {
 
                 <Styled.LogContainer>
                     <Styled.buttonLoginContainer>
-                        <Styled.Loggin onClick={() => { setLogon(!logon); setRegister(false); setMessage('') }}>
+                        <Styled.Loggin onClick={() => { setTitleConteiner('Login'); showContainerLogin(); setMessage('') }}>
                             Login
                         </Styled.Loggin>
-                        <Styled.Loggin onClick={() => { setRegister(!register); setLogon(false); setMessage('') }}>
+                        <Styled.Loggin onClick={() => { setTitleConteiner('Register'); showContainerLogin(); setMessage('') }}>
                             Register
                         </Styled.Loggin>
                     </Styled.buttonLoginContainer>
-                    <Styled.Container>
-                        {showContainerLogin()}
-                    </Styled.Container>
+                    <Styled.ModalContainer
+                        isOpen={isOpen}
+                        onBackgroundClick={showContainerLogin}
+                        onEscapeKeydown={showContainerLogin}>
+                        <LoginRegister titleContainer={titleConteiner} />
+                    </Styled.ModalContainer>
                 </Styled.LogContainer>
             </Styled.HeaderContainer>
             <Styled.Line />
