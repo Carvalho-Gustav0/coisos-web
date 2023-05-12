@@ -2,8 +2,6 @@ import styled from "styled-components";
 import Modal from 'styled-react-modal'
 
 export const Header = styled.header`
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
     width: 100vw;
 `
 
@@ -12,6 +10,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
     flex: 1;
+    padding-left: 0.8rem;
 `
 
 export const Title = styled.p`
@@ -67,5 +66,4 @@ export const ModalContainer = Modal.styled`
 
 export const Line = styled.div`
     border: 1px solid ${props => props.theme.colors.gray_500};
-    width: 100%;
 `
