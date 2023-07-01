@@ -1,6 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import * as Styled from './style'
-import { useState } from 'react';
+import { NavLink } from 'react-router-dom'
 
 interface MenuType {
     path: string;

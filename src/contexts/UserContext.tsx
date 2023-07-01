@@ -35,7 +35,8 @@ interface UserContextType {
     setMessage: (newState: string) => void,
     dismissLayoutLogin: boolean,
     setDismissLayoutLogin: (newState: boolean) => void,
-    loginOrRegister: (titleContainer: string) => void,
+    login: () => void,
+    register: () => void,
 }
 
 const initialValue = {
@@ -58,7 +59,8 @@ const initialValue = {
     setMessage: () => { },
     dismissLayoutLogin: false,
     setDismissLayoutLogin: () => { },
-    loginOrRegister: () => { },
+    login: () => { },
+    register: () => { },
 }
 
 export const UserContext = createContext<UserContextType>(initialValue)
@@ -72,32 +74,11 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
     const [message, setMessage] = useState<string>(initialValue.message)
     const [dismissLayoutLogin, setDismissLayoutLogin] = useState<boolean>(initialValue.dismissLayoutLogin)
 
-    const loginOrRegister = async (titleContainer: string) => {
-        if (titleContainer === 'Login') {
-            await api.post('users/login', { identifier, password }).then((response) => {
-                if (!response) {
-                    setMessage('Error on connect to server')
-                } else {
-                    const data = response.data as LoginResponse
-                    const user = {
-                        id: data.id,
-                        name: data.name,
-                        identifier: data.identifier,
-                        token: data.token
-                    }
-
-                    setUser(user)
-                    setMessage(data.message)
-                }
-            }).catch((error) => {
-                if (error.code === 'ERR_NETWORK') {
-                    setMessage('Error on connect to server')
-                } else {
-                    setMessage(error.response.data.error)
-                }
-            })
-        } else if (titleContainer === 'Register') {
-            await api.post('users/register', { name, identifier, password }).then((response) => {
+    async function login() {
+        await api.post('users/login', { identifier, password }).then((response) => {
+            if (!response) {
+                setMessage('Error on connect to server')
+            } else {
                 const data = response.data as LoginResponse
                 const user = {
                     id: data.id,
@@ -105,23 +86,44 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
                     identifier: data.identifier,
                     token: data.token
                 }
+
                 setUser(user)
                 setMessage(data.message)
-            }).catch((error) => {
-                if (error.code === 'ERR_NETWORK') {
-                    setMessage('Error on connect to server')
-                } else {
-                    setMessage(error.response.data.error)
-                }
-            })
-        }
+            }
+        }).catch((error) => {
+            if (error.code === 'ERR_NETWORK') {
+                setMessage('Error on connect to server')
+            } else {
+                setMessage(error.response.data.error)
+            }
+        })
+    }
+
+    async function register() {
+        await api.post('users/register', { name, identifier, password }).then((response) => {
+            const data = response.data as LoginResponse
+            const user = {
+                id: data.id,
+                name: data.name,
+                identifier: data.identifier,
+                token: data.token
+            }
+            setUser(user)
+            setMessage(data.message)
+        }).catch((error) => {
+            if (error.code === 'ERR_NETWORK') {
+                setMessage('Error on connect to server')
+            } else {
+                setMessage(error.response.data.error)
+            }
+        })
     }
 
     return (
         <UserContext.Provider value={{
             name, setName, identifier, setIdentifier,
-            password, setPassword, userToken, setUserToken, user, setUser, message, setMessage, 
-            dismissLayoutLogin, setDismissLayoutLogin, loginOrRegister
+            password, setPassword, userToken, setUserToken, user, setUser, message, setMessage,
+            dismissLayoutLogin, setDismissLayoutLogin, login, register
         }}>
             {children}
         </UserContext.Provider>

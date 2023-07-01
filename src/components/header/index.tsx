@@ -1,14 +1,13 @@
-import { useContext, useState } from 'react'
-import { LoginRegister } from '../login'
 import * as Styled from './style'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../contexts/UserContext'
+import { ModalLoginContent } from './login'
+import { ModalRegisterContent } from './register'
+import { MenuApp } from './menu'
 
 export function Header() {
-
-    const { setMessage } = useContext(UserContext)
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const [titleConteiner, setTitleConteiner] = useState<string>('')
+    const [component, setComponent] = useState<JSX.Element>()
 
     function showContainerLogin() {
         setIsOpen(!isOpen)
@@ -17,27 +16,28 @@ export function Header() {
     return (
         <Styled.Header>
             <Styled.HeaderContainer>
-                <Link to={'/'} >
+                <Link to={'/home'} >
                     <Styled.Title>
                         Coisos
                     </Styled.Title>
                 </Link>
-
+                <Styled.MenuContainer>
+                    <MenuApp />
+                </Styled.MenuContainer>
                 <Styled.LogContainer>
                     <Styled.buttonLoginContainer>
-                        <Styled.Loggin onClick={() => { setTitleConteiner('Login'); showContainerLogin(); setMessage('') }}>
+                        <Styled.Loggin onClick={() => { showContainerLogin(); setComponent(<ModalLoginContent />) }}>
                             Login
                         </Styled.Loggin>
-                        <Styled.Loggin onClick={() => { setTitleConteiner('Register'); showContainerLogin(); setMessage('') }}>
+                        <Styled.Loggin onClick={() => { showContainerLogin(); setComponent(<ModalRegisterContent />) }}>
                             Register
                         </Styled.Loggin>
                     </Styled.buttonLoginContainer>
                     <Styled.ModalContainer
                         isOpen={isOpen}
                         onBackgroundClick={showContainerLogin}
-                        onEscapeKeydown={showContainerLogin}>
-                        <LoginRegister titleContainer={titleConteiner} />
-                    </Styled.ModalContainer>
+                        onEscapeKeydown={showContainerLogin}
+                        children={component} />
                 </Styled.LogContainer>
             </Styled.HeaderContainer>
             <Styled.Line />

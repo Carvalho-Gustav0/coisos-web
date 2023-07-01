@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 import Modal from 'styled-react-modal'
 
 export const Header = styled.header`
@@ -10,6 +10,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
     flex: 1;
+
     padding-left: 0.8rem;
 `
 
@@ -17,13 +18,21 @@ export const Title = styled.p`
     font-weight: 700;
     font-size: 36px;
     font-family: 'Heebo', sans-serif;
+
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
     ${props => `
         background-image: linear-gradient(to top, ${props.theme.colors.primary}, ${props.theme.colors.secondary});
     `
     }
+`
+
+export const MenuContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `
 
 export const LogContainer = styled.div`
@@ -35,15 +44,18 @@ export const LogContainer = styled.div`
 export const buttonLoginContainer = styled.div`
     display: flex;
     flex-direction: row;
+
     height: 100%;
 `
 
 export const Loggin = styled.button`
     width: 108px;
     height: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
+    
     cursor:pointer;
 
     font-weight: 700;

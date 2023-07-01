@@ -1,4 +1,4 @@
 import styled from "styled-components";
 
-export const Archives = styled.div`
+export const ContainerPageArchive = styled.div`
 `
