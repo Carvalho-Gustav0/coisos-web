@@ -50,7 +50,6 @@ export const buttonLoginContainer = styled.div`
 
 export const Loggin = styled.button`
     width: 108px;
-    height: 100%;
 
     display: flex;
     justify-content: center;

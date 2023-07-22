@@ -6,7 +6,7 @@ export function MenuApp() {
         <Styled.MenuContainer>
             <ItemMenu path={'/home'} name={'Home'} />
             <ItemMenu path={'/rpg'} name={'Rpg'} />
-            <ItemMenu path={'/arquivos'} name={'Arquivos'} />
+            <ItemMenu path={'/archives'} name={'Archives'} />
         </Styled.MenuContainer>
     )
 }

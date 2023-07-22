@@ -1,23 +1,16 @@
 import * as Styled from './style'
-import { Form } from '../../form'
 import { UserContext } from '../../../contexts/UserContext'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 
 export function ModalLoginContent() {
-    const { login, identifier, password, setIdentifier, setPassword } = useContext(UserContext)
+    const { setEmail, setPassword, messageLogin, login } = useContext(UserContext)
+    const successMessage = messageLogin === 'Successful login';
 
-    function valueInputs(props: Array<string>) {
-        const [identifier, password] = props
+    function nahdleLogin(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
 
-        setIdentifier(identifier)
-        setPassword(password)
+        login()
     }
-
-    useEffect(() => {
-        if (identifier && password) {
-            login()
-        }
-    }, [identifier, password])
 
     return (
         <Styled.ModalLogin>
@@ -25,9 +18,16 @@ export function ModalLoginContent() {
                 Login
             </Styled.TitleContainer>
 
-            <Form textButton='Login' onResult={valueInputs} inputs={[
-                { type: 'text', text: 'Type your identifier', required: true },
-                { type: 'password', text: 'Type your password', required: true }]} />
+            <Styled.Form onSubmit={(e) => nahdleLogin(e)}>
+                <Styled.Input required type='email' placeholder='Type your email' onChange={(e) => setEmail(e.currentTarget.value)} />
+                <Styled.Input required type='password' placeholder='Type your password' onChange={(e) => setPassword(e.currentTarget.value)} />
+                <Styled.SendFormButton type='submit'>
+                    Login
+                </Styled.SendFormButton>
+            </Styled.Form>
+            <Styled.Message success={successMessage}>
+                {messageLogin}
+            </Styled.Message>
         </Styled.ModalLogin>
     )
 }

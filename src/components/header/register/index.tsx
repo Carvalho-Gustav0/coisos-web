@@ -1,36 +1,35 @@
 import * as Styled from './style'
-import { useContext, useEffect } from 'react'
-import { Form } from '../../form'
 import { UserContext } from '../../../contexts/UserContext'
+import { useContext } from 'react'
 
 export function ModalRegisterContent() {
+    const { setName, setCPF, setEmail, setPassword, messageLogin, register } = useContext(UserContext)
+    const successMessage = messageLogin === 'Successful register';
 
-    const { register, name, identifier, password, setName, setIdentifier, setPassword } = useContext(UserContext)
+    function nahdleLogin(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
 
-    function valueInputs(props: Array<string>) {
-        const [name, identifier, password] = props
-
-        setName(name)
-        setIdentifier(identifier)
-        setPassword(password)
+        register()
     }
-
-    useEffect(() => {
-        if (name && identifier && password) {
-            register();
-        }
-    }, [name, identifier, password])
 
     return (
         <Styled.ModalRegister>
             <Styled.TitleContainer>
-                Login
+                Register
             </Styled.TitleContainer>
 
-            <Form onResult={valueInputs} textButton='Register' inputs={[
-                { type: 'text', text: 'Type your name', required: true },
-                { type: 'text', text: 'Type your identifier', required: true },
-                { type: 'password', text: 'Type your password', required: true }]} />
+            <Styled.Form onSubmit={(e) => nahdleLogin(e)}>
+                <Styled.Input required type='text' placeholder='Type your name' onChange={(e) => setName(e.currentTarget.value)} />
+                <Styled.Input required type='number' placeholder='Type your cpf' onChange={(e) => setCPF(e.currentTarget.value)} />
+                <Styled.Input required type='email' placeholder='Type your email' onChange={(e) => setEmail(e.currentTarget.value)} />
+                <Styled.Input required type='password' placeholder='Type your password' onChange={(e) => setPassword(e.currentTarget.value)} />
+                <Styled.SendFormButton type='submit'>
+                    Register
+                </Styled.SendFormButton>
+            </Styled.Form>
+            <Styled.Message success={successMessage}>
+                {messageLogin}
+            </Styled.Message>
         </Styled.ModalRegister>
     )
 }

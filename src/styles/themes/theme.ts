@@ -15,5 +15,8 @@ export const MainTheme = {
         gray_300: '#e0e0e0',
         gray_400: '#bdbdbd',
         gray_500: '#9e9e9e',
+
+        green_500: '#4caf50',
+        red_900: '#b71c1c',
     }
 }

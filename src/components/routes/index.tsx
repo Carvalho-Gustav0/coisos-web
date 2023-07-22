@@ -9,7 +9,7 @@ export function AppRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/rpg" element={<Rpg />} />
-            <Route path="/arquivos" element={<Archives />} />
+            <Route path="/archives" element={<Archives />} />
             <Route path="*" element={<>Página não encontrada</>} />
         </Routes>
     )
