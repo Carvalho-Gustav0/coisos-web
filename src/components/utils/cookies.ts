@@ -1,20 +1,15 @@
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 
-const AUTH_TOKEN_COOKIE = 'authToken';
+const TOKEN_COOKIE_KEY = 'userToken'
 
 export function getAuthToken() {
-  return Cookies.get(AUTH_TOKEN_COOKIE);
+  return Cookies.get(TOKEN_COOKIE_KEY)
 }
 
 export function setAuthToken(token: string) {
-  Cookies.set(AUTH_TOKEN_COOKIE, token, {
-    expires: 1,
-    secure: true,
-    sameSite: 'strict',
-    httpOnly: true,
-  });
+  Cookies.set(TOKEN_COOKIE_KEY, token, { expires: 1})
 }
 
 export function removeAuthToken() {
-  Cookies.remove(AUTH_TOKEN_COOKIE);
+  Cookies.remove(TOKEN_COOKIE_KEY)
 }

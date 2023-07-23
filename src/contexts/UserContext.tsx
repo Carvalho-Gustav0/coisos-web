@@ -29,8 +29,6 @@ interface UserContextType {
     setPassword: (newState: string) => void,
     cpf: string,
     setCPF: (newState: string) => void,
-    userToken: string,
-    setUserToken: (newState: string) => void,
     user: UserType,
     setUser: (newState: UserType) => void,
     dismissLayoutLogin: boolean,
@@ -49,8 +47,6 @@ const initialValue = {
     setEmail: () => { },
     password: '',
     setPassword: () => { },
-    userToken: '',
-    setUserToken: () => { },
     cpf: '',
     setCPF: () => { },
     user: {
@@ -77,46 +73,29 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
     const [email, setEmail] = useState<string>(initialValue.email)
     const [cpf, setCPF] = useState<string>(initialValue.email)
     const [password, setPassword] = useState<string>(initialValue.password)
-    const [userToken, setUserToken] = useState<string>(initialValue.userToken)
     const [user, setUser] = useState<UserType>(initialValue.user)
     const [dismissLayoutLogin, setDismissLayoutLogin] = useState<boolean>(initialValue.dismissLayoutLogin)
 
-    useEffect(() => {
-        const authToken = getAuthToken();
-        if (authToken) {
-            setUserToken(authToken);
-        }
-    }, []);
-
     async function login() {
-        await api.post('user/login', { userToken, email, password }).then((response) => {
-
-            const data = response.data as LoginResponse
+        await api.post('user/login', { email, password }).then((response) => {
+            const data = response.data.user as LoginResponse;
             const user = {
                 id_user: data.id_user,
                 name: data.name,
                 email: data.email,
                 cpf: data.cpf,
-            }
+            };
             setUser(user)
             setAuthToken(data.user_token)
             setMessageLogin('Successful login')
         }).catch((error) => {
             setMessageLogin(error.response.data.message)
-            console.log(error)
-            return error
-        })
+            return error;
+        });
     }
 
     async function register() {
-        await api.post('user/create', { userToken, name, cpf, email, password }).then((response) => {
-            const data = response.data as LoginResponse
-            const user = {
-                name: data.name,
-                email: data.email,
-                cpf: data.cpf,
-            }
-            setUser(user)
+        await api.post('user/create', { name, cpf, email, password }).then(() => {
             setMessageLogin('Successful register')
         }).catch((error) => {
             setMessageLogin(error.response.data.message)
@@ -126,13 +105,31 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
 
     async function logout() {
         removeAuthToken();
-        setUserToken('');
+        window.location.reload()
     }
+
+    useEffect(() => {
+        const token = getAuthToken();
+        if (token) {
+            api.post('user/login', { token }).then((response) => {
+                const data = response.data.user as LoginResponse;
+                const user = {
+                    id_user: data.id_user,
+                    name: data.name,
+                    email: data.email,
+                    cpf: data.cpf,
+                };
+                setUser(user);
+            }).catch((error) => {
+                setMessageLogin(error.response.data.message);
+            });
+        }
+    }, []);
 
     return (
         <UserContext.Provider value={{
             name, setName, email, setEmail, cpf, setCPF,
-            password, setPassword, userToken, setUserToken, user, setUser,
+            password, setPassword, user, setUser,
             dismissLayoutLogin, setDismissLayoutLogin, login, register, logout, messageLogin, setMessageLogin,
         }}>
             {children}

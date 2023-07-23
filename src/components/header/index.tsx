@@ -5,11 +5,12 @@ import { ModalLoginContent } from './login'
 import { ModalRegisterContent } from './register'
 import { MenuApp } from './menu'
 import { UserContext } from '../../contexts/UserContext'
+import { getAuthToken } from '../utils/cookies'
 
 export function Header() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [component, setComponent] = useState<JSX.Element>()
-    const { logout, userToken, setMessageLogin } = useContext(UserContext)
+    const { logout, setMessageLogin } = useContext(UserContext)
 
     function showContainerLogin() {
         setIsOpen(!isOpen)
@@ -27,7 +28,7 @@ export function Header() {
                 <Styled.MenuContainer>
                     <MenuApp />
                 </Styled.MenuContainer>
-                {userToken === '' ? (
+                {!getAuthToken() ? (
                     <Styled.LogContainer>
                         <Styled.buttonLoginContainer>
                             <Styled.Loggin onClick={() => { showContainerLogin(); setComponent(<ModalLoginContent />) }}>
@@ -44,7 +45,7 @@ export function Header() {
                             children={component} />
                     </Styled.LogContainer>
                 ) : (
-                    <Styled.Loggin onClick={() => { logout() }}>
+                    <Styled.Loggin onClick={() => logout()}>
                         Log Out
                     </Styled.Loggin>
                 )
