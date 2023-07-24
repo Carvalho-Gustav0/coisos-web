@@ -78,7 +78,7 @@ export const UserContextProvider = ({ children }: UserContextPropsType) => {
 
     async function login() {
         await api.post('user/login', { email, password }).then((response) => {
-            const data = response.data.user as LoginResponse;
+            const data = response.data as LoginResponse;
             const user = {
                 id_user: data.id_user,
                 name: data.name,
