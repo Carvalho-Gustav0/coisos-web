@@ -45,9 +45,14 @@ export function Header() {
                             children={component} />
                     </Styled.LogContainer>
                 ) : (
-                    <Styled.Loggin onClick={() => logout()}>
-                        Log Out
-                    </Styled.Loggin>
+                    <Styled.ProfileContainer>
+                        <Styled.Loggin>
+                            Profile
+                        </Styled.Loggin>
+                        <Styled.Loggin onClick={() => logout()}>
+                            Log Out
+                        </Styled.Loggin>
+                    </Styled.ProfileContainer>
                 )
                 }
             </Styled.HeaderContainer>

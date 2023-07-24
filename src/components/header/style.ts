@@ -41,6 +41,11 @@ export const LogContainer = styled.div`
     justify-content: center;
 `
 
+export const ProfileContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+
 export const buttonLoginContainer = styled.div`
     display: flex;
     flex-direction: row;
