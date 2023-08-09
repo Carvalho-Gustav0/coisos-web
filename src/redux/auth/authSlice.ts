@@ -11,11 +11,13 @@ interface UserType {
 interface AuthState {
   user: UserType | null;
   messageLogin: string;
+  messageRegister: string;
 }
 
 const initialState: AuthState = {
   user: null,
   messageLogin: '',
+  messageRegister: ''
 };
 
 const authSlice = createSlice({
@@ -24,6 +26,9 @@ const authSlice = createSlice({
   reducers: {
     login(state, action: PayloadAction<UserType>) {
       state.user = action.payload;
+    },
+    setMessageRegister(state, action: PayloadAction<string>) {
+      state.messageRegister = action.payload
     },
     setMessageLogin(state, action: PayloadAction<string>) {
       state.messageLogin = action.payload;
@@ -35,5 +40,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout, setMessageLogin } = authSlice.actions;
+export const { login, logout, setMessageLogin, setMessageRegister } = authSlice.actions;
 export default authSlice.reducer;

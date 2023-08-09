@@ -5,31 +5,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as Styled from './style'
 import { useState } from 'react'
 import { RootState } from '@/redux/store'
-import { setMessageLogin } from '@/redux/auth/authSlice'
-import { useRouter } from 'next/navigation'
+import { setMessageLogin, setMessageRegister } from '@/redux/auth/authSlice'
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
-    const dispatch = useDispatch()
-    const route = useRouter()
     const [name, setName] = useState<string>('')
     const [cpf, setCPF] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const messageLogin = useSelector((state: RootState) => state.rootReducer.auth.messageLogin)
 
+    const dispatch = useDispatch()
+    const router = useRouter()
 
-    function handleRegister(e: React.FormEvent<HTMLFormElement>) {
+    dispatch(setMessageLogin(''))
+
+    const messageRegister = useSelector((state: RootState) => state.rootReducer.auth.messageRegister)
+    const { handleRegister } = useAuth()
+
+    function handleRegisterForm(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        const isRegistered = useAuth().handleRegister(name, cpf, email, password)
+        const isRegistered = handleRegister(name, cpf, email, password)
         isRegistered.then(() => {
-            route.push('/login')
-            window.location.reload()
+            router.push('/login');
         }).catch((error) => {
             if (!error.response) {
-                dispatch(setMessageLogin('Error connecting to server, try again later'))
+                dispatch(setMessageRegister('Error connecting to server, try again later'))
             } else {
-                dispatch(setMessageLogin(error.response.data.message))
+                dispatch(setMessageRegister(error.response.data.message))
             }
         })
     }
@@ -41,7 +44,7 @@ export default function Register() {
                     Register
                 </Styled.TitleContainer>
 
-                <Styled.Form onSubmit={(e) => handleRegister(e)}>
+                <Styled.Form onSubmit={(e) => handleRegisterForm(e)}>
                     <Styled.Input required type='text' placeholder='Type your name' onChange={(e) => setName(e.currentTarget.value)} />
                     <Styled.Input required type='number' placeholder='Type your cpf' onChange={(e) => setCPF(e.currentTarget.value)} />
                     <Styled.Input required type='email' placeholder='Type your email' onChange={(e) => setEmail(e.currentTarget.value)} />
@@ -51,7 +54,7 @@ export default function Register() {
                     </Styled.SendFormButton>
                 </Styled.Form>
                 <Styled.Message>
-                    {messageLogin}
+                    {messageRegister}
                 </Styled.Message>
             </Styled.ContainerRegister>
         </Styled.Register>

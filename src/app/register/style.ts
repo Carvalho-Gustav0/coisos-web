@@ -16,7 +16,7 @@ export const ContainerRegister = styled.div`
     flex-direction: column;
     align-items: center;
 
-    width: 232px;
+    width: 260px;
 
     gap: 8px;
     padding: 0.5rem;

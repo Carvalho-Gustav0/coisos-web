@@ -5,25 +5,28 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as Styled from './style'
 import { useState } from 'react'
 import { RootState } from '@/redux/store'
-import { login, setMessageLogin } from '@/redux/auth/authSlice'
-import { useRouter } from 'next/navigation'
+import { login, setMessageLogin, setMessageRegister } from '@/redux/auth/authSlice'
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const dispatch = useDispatch()
-    const route = useRouter()
+    const { handleLogin } = useAuth()
+    const router = useRouter()
+
+    dispatch(setMessageRegister(''))
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const messageLogin = useSelector((state: RootState) => state.rootReducer.auth.messageLogin)
 
-    async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+    async function handleLoginForm(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        const user = useAuth().handleLogin(email, password)
+        const user = handleLogin(email, password)
         await user.then((response) => {
             dispatch(login(response))
-            route.push('/home')
-            window.location.reload()
+            dispatch(setMessageLogin('Success Login'))
+            router.push('/home')
         }).catch((error) => {
             if (!error.response) {
                 dispatch(setMessageLogin('Error connecting to server, try again later'))
@@ -40,7 +43,7 @@ export default function Login() {
                     Login
                 </Styled.TitleContainer>
 
-                <Styled.Form onSubmit={(e) => handleLogin(e)}>
+                <Styled.Form onSubmit={(e) => handleLoginForm(e)}>
                     <Styled.Input required type='email' placeholder='Type your email' onChange={(e) => setEmail(e.currentTarget.value)} />
                     <Styled.Input required type='password' placeholder='Type your password' onChange={(e) => setPassword(e.currentTarget.value)} />
                     <Styled.SendFormButton type='submit'>
