@@ -1,31 +1,62 @@
 import styled from "styled-components"
 
-export const ContainerItem = styled.div`
+export const ItemMenu = styled.div`
     a {
-        width: 108px;
-        height: 100%;
+        color: ${props => props.theme.colors.primary};
+        width: 100%;
 
         display: flex;
-        justify-content: center;
+
         align-items: center;
-        
-        cursor:pointer;
+        justify-content: center;
 
-        font-weight: 700;
-        font-family: 'Heebo', sans-serif;
-        
-        ${props => `
-            color: ${props.theme.colors.primary};
-            background-color: ${props.theme.colors.white};
-            border: 1px solid ${props.theme.colors.gray_500};
-            &:hover {
-                background-color: ${props.theme.colors.gray_200};
-            }
-        `
-    }
+        padding-left: 24px;
+        padding-right: 24px;
 
-        &.active {
-            background-color: ${props => props.theme.colors.gray_300};
+        height: 100%;
+
+        &:hover {
+            background-color: ${props => props.theme.colors.gray_800};
         }
     }
+
+    width: 30%;
+
+    display: flex;
+
+    justify-content: center;
+    
+    border-left: 1px solid ${props => props.theme.colors.gray_800};
+    border-right: 1px solid ${props => props.theme.colors.gray_800};
+
+    color: ${props => props.theme.colors.primary};
+
+    @media screen and (max-width: 767px) {
+        a {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        a {
+            padding-left: 0px;
+            padding-right: 0px;
+
+            gap: 12px;
+
+            justify-content: start;
+
+            color: ${props => props.theme.colors.white};
+        }
+
+        border: 0px solid ${props => props.theme.colors.gray_800};
+
+        width: 100%;
+        padding: 16px;
+    }
+`
+
+export const IconContainer = styled.div`
+    color: ${props => props.theme.colors.white};
 `

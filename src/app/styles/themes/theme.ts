@@ -1,6 +1,6 @@
 export const MainTheme = {
     colors: {
-        primary: '#880e4f',
+        primary: '#ffeb3b',
         secondary: '#4a148c',
 
         black: '#000',
@@ -15,6 +15,12 @@ export const MainTheme = {
         gray_300: '#e0e0e0',
         gray_400: '#bdbdbd',
         gray_500: '#9e9e9e',
+        gray_800: '#424242',
+        gray_900: '#212121',
+
+        yellow_300: '#fff176',
+        yellow_500: '#ffeb3b',
+        yellow_700: '#fbc02d',
 
         green_500: '#4caf50',
         red_900: '#b71c1c',

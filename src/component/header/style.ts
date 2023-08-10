@@ -2,62 +2,144 @@ import styled from "styled-components"
 
 export const Header = styled.header`
     width: 100vw;
-`
+    height: 60px;
 
-export const HeaderContainer = styled.div`
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-`
-
-export const Title = styled.p`
-    font-weight: 700;
-    font-size: 36px;
-    font-family: 'Heebo', sans-serif;
-
-    padding: 8px;
-
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    ${props => `
-        background-image: linear-gradient(to top, ${props.theme.colors.primary}, ${props.theme.colors.secondary});
-    `
-    }
-`
-
-export const MenuContainer = styled.div`
-    width: 66%;
-
-    @media screen and (max-width: 920px) {
-        width: 78%;
-    }
-
-    @media screen and (max-width: 720px){
-        width: 66%;
-    }
-`
-
-export const LogContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`
-
-export const ProfileContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-`
-
-export const buttonLoginContainer = styled.div`
     display: flex;
     flex-direction: row;
 
+    align-items: center;
+
+    background-color: ${props => props.theme.colors.gray_900};
+
+    @media screen and (max-width: 576px) {
+        height: 80px;
+
+        justify-content: space-between;
+        padding-right: 12px;
+    }
+`
+
+export const TitleContainer = styled.div`
+    width: 18%;
+
+    font-size: x-large;
+
+    padding-left: 16px;
+
+    a {
+        color: ${props => props.theme.colors.primary};
+        &:hover {
+            color: ${props => props.theme.colors.yellow_700};
+        }
+    }
+    color: ${props => props.theme.colors.primary};
+
+
+    @media screen and (max-width: 1199px) {
+        width: 30%;
+    }
+
+    @media screen and (max-width: 991px) {
+        width: 30%;
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 30%;
+        font-size: large;
+    }
+
+    @media screen and (max-width: 576px) {
+        width: 54%;
+
+        font-size: large;
+    }
+`
+
+export const MenuHorizontalContainer = styled.div`
+    width: 50%;
     height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    @media screen and (max-width: 1199px) {
+        
+    }
+
+    @media screen and (max-width: 991px) {
+        
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 42%;
+    }
+
+    @media screen and (max-width: 576px) {
+        display: none;
+    }
 `
 
-export const Line = styled.div`    
-    border: 1px solid ${props => props.theme.colors.gray_500};
+export const UserContainer = styled.div`
+    width: 32%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: end;
+    align-items: center;
+
+    padding-right: 16px;
+
+    gap: 24px;
+
+    a {
+        color: ${props => props.theme.colors.primary};
+    }
+
+    @media screen and (max-width: 767px) {
+        justify-content: center;
+        padding-right: 0px;
+    }
+
+    @media screen and (max-width: 576px) {
+        display: none;
+    }
+`
+
+interface MenuHamburgerProps {
+    isopen: number
+}
+
+export const MenuHamburger = styled.div<MenuHamburgerProps>`
+    display: none;
+
+    @media screen and (max-width: 576px) {
+        display: flex;
+
+        transition: transform 0.3s;
+
+        ${props => props.isopen && `
+            transform: rotate(90deg);
+        `}
+    }
+`
+
+export const LineButtons = styled.div`
+    border: 1px solid ${props => props.theme.colors.gray_800};
+    height: 54%;
+
+    transform: rotate(15deg);
+`
+
+export const MenuVerticalContainer = styled.div`
+    position: fixed;
+
+    right: 0;
+    top: 80px;
+
+    height: 100vh;
+    width: 50%;
+
+    background-color: ${props => props.theme.colors.gray_900};
 `
