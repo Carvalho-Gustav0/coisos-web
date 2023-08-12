@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { FaBars } from 'react-icons/fa';
 import { ButtonUser } from '../buttons/user/button'
 import { AiOutlineUser } from 'react-icons/ai'
+import { ButtonAuthenticated } from '@/utils/authenticated/isAuthenticated'
 
 export function Header() {
 
@@ -23,9 +24,7 @@ export function Header() {
                 <MenuApp />
             </Styled.MenuHorizontalContainer>
             <Styled.UserContainer>
-                <ButtonUser text='Login' path='/login' />
-                <Styled.LineButtons />
-                <ButtonUser text='Register' path='/register' />
+                <ButtonAuthenticated />
             </Styled.UserContainer>
             <Styled.MenuHamburger onClick={() => setOpenMenu(!openMenu)} isopen={openMenu ? 1 : 0}>
                 <FaBars size={30} color="#fff" />

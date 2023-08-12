@@ -44,19 +44,30 @@ export const ItemMenu = styled.div`
             padding-right: 0px;
 
             gap: 12px;
-
-            justify-content: start;
+            padding: 8px;
 
             color: ${props => props.theme.colors.white};
+
+            display: flex;
+            justify-content: start;
         }
 
         border: 0px solid ${props => props.theme.colors.gray_800};
 
         width: 100%;
         padding: 16px;
+
+        &:hover {
+            background-color: ${props => props.theme.colors.gray_800};
+        }
     }
 `
 
 export const IconContainer = styled.div`
-    color: ${props => props.theme.colors.white};
+    display: none;
+
+    @media screen and (max-width: 576px) {
+        display: flex;
+        color: ${props => props.theme.colors.white};
+    }
 `
