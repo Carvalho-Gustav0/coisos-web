@@ -27,10 +27,6 @@ export const ButtonsContainer = styled.div`
 
     gap: 24px;
 
-    a {
-        color: ${props => props.theme.colors.primary};
-    }
-
     @media screen and (max-width: 767px) {
         justify-content: center;
         padding-right: 0px;
@@ -39,6 +35,8 @@ export const ButtonsContainer = styled.div`
 
     @media screen and (max-width: 576px) {
         width: 100%;
+
+        gap: 0px;
 
         display: flex;
         flex-direction: column;
@@ -50,13 +48,16 @@ export const Buttons = styled.div`
 
     @media screen and (max-width: 576px) {
         a {
-
-            gap: 12px;
-            padding: 8px;
+            padding: 6px;
 
             color: ${props => props.theme.colors.white};
 
             width: 100%;
+
+            &:hover {
+                color: ${props => props.theme.colors.yellow_700};
+            }
+            
         }
 
         border: 0px solid ${props => props.theme.colors.gray_800};
@@ -65,12 +66,8 @@ export const Buttons = styled.div`
         align-items: center;
 
         width: 100%;
-        padding: 16px;
-        padding-left: 24px;
-
-        &:hover {
-            background-color: ${props => props.theme.colors.gray_800};
-        }
+        padding: 8px;
+        gap: 12px;
     }
 `
 

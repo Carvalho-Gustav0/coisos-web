@@ -34,7 +34,6 @@ export function useAuth() {
 
     async function handleLogout() {
         removeAuthToken();
-        window.location.reload()
     }
 
     return { handleLogin, handleRegister, handleLogout };

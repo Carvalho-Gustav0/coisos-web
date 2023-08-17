@@ -3,50 +3,78 @@ import styled from "styled-components"
 export const Login = styled.main`
     display: flex;
 
+    position: fixed;
+
+    width: 100%;
+    height: 100vh;
+
     justify-content: center;
     align-items: center;
 
-    padding-top: 12rem;
+    background-image: url('/deus.svg');
+    background-size: cover;
+    background-position: center;
+
+    background-color: ${props => props.theme.colors.gray_900};
 `
 
 export const ContainerLogin = styled.div`
-    width: 260px;
+    width: 560px;
+    min-height: 330px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    gap: 8px;
-    padding: 0.5rem;
+    font-size: 16px;
+
+    padding-top: 36px;
+    padding-inline: 60px 60px;
+
+    gap: 36px;
 
     border-radius: 6px;
 
-    ${props => `
-        border-left: 1px solid ${props.theme.colors.gray_200};
-        border-right: 1px solid ${props.theme.colors.gray_200};
-        border-bottom: 1px solid ${props.theme.colors.gray_200};
-        box-shadow: 0px 0px 8px ${props.theme.colors.gray_500};
-    `
+    box-shadow: 0px 0px 6px ${props => props.theme.colors.primary};
+
+    @media screen and (max-width: 576px){
+        width: 260px;
+        padding-inline: 6px 6px;
     }
 `
 
 export const TitleContainer = styled.div`
     font-weight: 700;
     text-align: center;
-    color: ${props => props.theme.colors.black};   
+
+    color: ${props => props.theme.colors.white};
+
+    .title {
+        color:  ${props => props.theme.colors.primary};
+        text-shadow: 1px 1px 6px ${props => props.theme.colors.primary};
+    }
 `
 
-export const Message = styled.div`
-    color: ${props => props.theme.colors.red_900};
+interface MessageProps {
+    $sucess: string
+}
+
+export const Message = styled.div<MessageProps>`
+    color: ${props => props.$sucess === 'Success Login' ? props.theme.colors.green_500 : props.theme.colors.red_900};
 `
 
 export const Input = styled.input`
     width: 100%;
 
-    padding: 0.4rem;
+    padding: 0.8rem;
+
+    ${props => `
+        background-color: ${props.theme.colors.gray_200};
+        border: 0px solid ${props.theme.colors.black};
+        color: ${props.theme.colors.secondary};
+    `}
 
     border-radius: 8px;
-    border: 1px solid ${props => props.theme.colors.gray_500};
 `
 
 export const Form = styled.form`
@@ -55,13 +83,13 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
 
-    gap: 16px;
+    gap: 24px;
 `
 
 export const SendFormButton = styled.button`
-    width: 50%;
+    width: 30%;
 
-    padding: 0.4rem;
+    padding: 0.8rem;
     border-radius: 8px;
 
     font-weight: 700;
@@ -70,11 +98,11 @@ export const SendFormButton = styled.button`
 
     ${props => `
         background-color: ${props.theme.colors.gray_200};
-        border: 1px solid ${props.theme.colors.gray_500};
-        color: ${props.theme.colors.black};
+        border: 0px solid ${props.theme.colors.black};
+        color: ${props.theme.colors.secondary};
 
         &:hover {
-            background-color: ${props.theme.colors.gray_300};
+            background-color: ${props.theme.colors.gray_500};
         }
     `}
 `

@@ -7,9 +7,14 @@ export const Header = styled.header`
     display: flex;
     flex-direction: row;
 
+    font-family: Inter;
+
     align-items: center;
 
-    background-color: ${props => props.theme.colors.gray_900};
+    background-color: ${props => props.theme.colors.secondary};
+    border-bottom: 1px solid ${props => props.theme.colors.gray_800};
+
+    z-index: 0;
 
     @media screen and (max-width: 576px) {
         height: 80px;
@@ -29,11 +34,11 @@ export const TitleContainer = styled.div`
     a {
         color: ${props => props.theme.colors.primary};
         &:hover {
+            text-shadow: 1px 0 10px ${props => props.theme.colors.primary};
             color: ${props => props.theme.colors.yellow_700};
         }
     }
     color: ${props => props.theme.colors.primary};
-
 
     @media screen and (max-width: 1199px) {
         width: 30%;
@@ -108,7 +113,7 @@ export const UserContainer = styled.div`
 `
 
 interface MenuHamburgerProps {
-    isopen: number
+    $isopen: number
 }
 
 export const MenuHamburger = styled.div<MenuHamburgerProps>`
@@ -119,7 +124,7 @@ export const MenuHamburger = styled.div<MenuHamburgerProps>`
 
         transition: transform 0.3s;
 
-        ${props => props.isopen && `
+        ${props => props.$isopen && `
             transform: rotate(90deg);
         `}
     }
@@ -137,6 +142,8 @@ export const MenuVerticalContainer = styled.div`
 
     right: 0;
     top: 80px;
+
+    z-index: 1;
 
     height: 100vh;
     width: 50%;

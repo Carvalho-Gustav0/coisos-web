@@ -1,6 +1,10 @@
 import styled from "styled-components"
 
-export const ItemMenu = styled.div`
+interface ItemMenuProps {
+    $isactive: number
+}
+
+export const ItemMenu = styled.div<ItemMenuProps>`
     a {
         color: ${props => props.theme.colors.primary};
         width: 100%;
@@ -10,38 +14,39 @@ export const ItemMenu = styled.div`
         align-items: center;
         justify-content: center;
 
-        padding-left: 24px;
-        padding-right: 24px;
-
         height: 100%;
 
         &:hover {
-            background-color: ${props => props.theme.colors.gray_800};
+            color: ${props => props.theme.colors.yellow_700};
+            text-shadow: 1px 0 10px ${props => props.theme.colors.primary};
         }
+
+        ${props => `
+            ${props.$isactive && `
+                    color: ${props.theme.colors.yellow_700};
+                    text-shadow: 1px 0 10px ${props.theme.colors.primary};
+                `
+        }
+        `}
     }
 
-    width: 30%;
+    width: 88px;
 
     display: flex;
 
     justify-content: center;
-    
-    border-left: 1px solid ${props => props.theme.colors.gray_800};
-    border-right: 1px solid ${props => props.theme.colors.gray_800};
 
     color: ${props => props.theme.colors.primary};
 
     @media screen and (max-width: 767px) {
         a {
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-inline: 16px 16px;
         }
     }
 
     @media screen and (max-width: 576px) {
         a {
-            padding-left: 0px;
-            padding-right: 0px;
+            padding-inline: 0px 0px;
 
             gap: 12px;
             padding: 8px;
@@ -50,16 +55,20 @@ export const ItemMenu = styled.div`
 
             display: flex;
             justify-content: start;
+
+            ${props => `
+                ${props.$isactive && `
+                        color: ${props.theme.colors.yellow_700};
+                        text-shadow: 1px 0 10px ${props.theme.colors.primary};
+                    `
+                }
+            `}
         }
 
         border: 0px solid ${props => props.theme.colors.gray_800};
 
         width: 100%;
-        padding: 16px;
-
-        &:hover {
-            background-color: ${props => props.theme.colors.gray_800};
-        }
+        padding: 6px;
     }
 `
 

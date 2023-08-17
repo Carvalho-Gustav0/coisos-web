@@ -5,9 +5,7 @@ import Link from 'next/link'
 import { MenuApp } from '../menu/index'
 import { useState } from 'react'
 import { FaBars } from 'react-icons/fa';
-import { ButtonUser } from '../buttons/user/button'
-import { AiOutlineUser } from 'react-icons/ai'
-import { ButtonAuthenticated } from '@/utils/authenticated/isAuthenticated'
+import { ButtonAuthenticated } from '@/component/buttons/authenticated/isAuthenticated'
 
 export function Header() {
 
@@ -26,7 +24,7 @@ export function Header() {
             <Styled.UserContainer>
                 <ButtonAuthenticated />
             </Styled.UserContainer>
-            <Styled.MenuHamburger onClick={() => setOpenMenu(!openMenu)} isopen={openMenu ? 1 : 0}>
+            <Styled.MenuHamburger onClick={() => setOpenMenu(!openMenu)} $isopen={openMenu ? 1 : 0}>
                 <FaBars size={30} color="#fff" />
             </Styled.MenuHamburger>
             {openMenu && (

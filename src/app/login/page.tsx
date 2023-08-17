@@ -40,7 +40,7 @@ export default function Login() {
         <Styled.Login>
             <Styled.ContainerLogin>
                 <Styled.TitleContainer>
-                    Login
+                    Welcome back to <span className='title'>Bagual Viagens</span>
                 </Styled.TitleContainer>
 
                 <Styled.Form onSubmit={(e) => handleLoginForm(e)}>
@@ -50,7 +50,7 @@ export default function Login() {
                         Login
                     </Styled.SendFormButton>
                 </Styled.Form>
-                <Styled.Message>
+                <Styled.Message $sucess={messageLogin}>
                     {messageLogin}
                 </Styled.Message>
             </Styled.ContainerLogin>

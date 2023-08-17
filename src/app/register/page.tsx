@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { RootState } from '@/redux/store'
 import { setMessageLogin, setMessageRegister } from '@/redux/auth/authSlice'
 import { useRouter } from 'next/navigation';
+import { ListFormat } from 'typescript'
 
 export default function Register() {
     const [name, setName] = useState<string>('')
@@ -27,12 +28,16 @@ export default function Register() {
 
         const isRegistered = handleRegister(name, cpf, email, password)
         isRegistered.then(() => {
+            dispatch(setMessageRegister('Success Register'))
             router.push('/login');
         }).catch((error) => {
+            console.log(error)
             if (!error.response) {
                 dispatch(setMessageRegister('Error connecting to server, try again later'))
             } else {
-                dispatch(setMessageRegister(error.response.data.message))
+                error.response.data.message.map((value: string) => {
+                    dispatch(setMessageRegister(value))
+                })
             }
         })
     }
@@ -41,19 +46,18 @@ export default function Register() {
         <Styled.Register>
             <Styled.ContainerRegister>
                 <Styled.TitleContainer>
-                    Register
+                    Welcome to <span className='title'>Bagual Viagens</span>
                 </Styled.TitleContainer>
 
                 <Styled.Form onSubmit={(e) => handleRegisterForm(e)}>
                     <Styled.Input required type='text' placeholder='Type your name' onChange={(e) => setName(e.currentTarget.value)} />
-                    <Styled.Input required type='number' placeholder='Type your cpf' onChange={(e) => setCPF(e.currentTarget.value)} />
                     <Styled.Input required type='email' placeholder='Type your email' onChange={(e) => setEmail(e.currentTarget.value)} />
                     <Styled.Input required type='password' placeholder='Type your password' onChange={(e) => setPassword(e.currentTarget.value)} />
                     <Styled.SendFormButton type='submit'>
                         Register
                     </Styled.SendFormButton>
                 </Styled.Form>
-                <Styled.Message>
+                <Styled.Message $sucess={messageRegister}>
                     {messageRegister}
                 </Styled.Message>
             </Styled.ContainerRegister>
