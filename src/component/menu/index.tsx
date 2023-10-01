@@ -16,9 +16,7 @@ export function MenuApp() {
                         <ItemMenu path={path} name={name} icon={<Icon />} key={index} />
                     ))}
                 </Styled.MenuItemContainer>
-                <Styled.UserContainer>
-                    <ButtonAuthenticated />
-                </Styled.UserContainer>
+                <ButtonAuthenticated />
             </Styled.ItemContainer>
         </Styled.Menu>
     )

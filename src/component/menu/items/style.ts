@@ -6,19 +6,21 @@ interface ItemMenuProps {
 
 export const ItemMenu = styled.div<ItemMenuProps>`
     a {
-        color: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.white};
+        
         width: 100%;
+        height: 100%;
 
         display: flex;
 
-        align-items: center;
         justify-content: center;
+        align-items: center;
 
-        height: 100%;
+        gap: 12px;
 
         &:hover {
-            color: ${props => props.theme.colors.yellow_700};
-            text-shadow: 1px 0 10px ${props => props.theme.colors.primary};
+            text-shadow: 1px 0 10px ${props => props.theme.colors.yellow_700};
+            color: ${props => props.theme.colors.primary};
         }
 
         ${props => `
@@ -26,32 +28,39 @@ export const ItemMenu = styled.div<ItemMenuProps>`
                     color: ${props.theme.colors.yellow_700};
                     text-shadow: 1px 0 10px ${props.theme.colors.primary};
                 `
-        }
+            }
         `}
     }
 
-    width: 88px;
+    width: 152px;
 
     display: flex;
-
-    justify-content: center;
+    
 
     color: ${props => props.theme.colors.primary};
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 991px) {
         a {
-            padding-inline: 16px 16px;
+            padding-inline: 8px 8px;
         }
+
+        width: 120px;
     }
 
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 840px) {
+        a {
+            padding-inline: 8px 8px;
+        }
+
+        width: 96px;
+    }
+
+    @media screen and (max-width: 680px) {
         a {
             padding-inline: 0px 0px;
 
-            gap: 12px;
+            gap: 18px;
             padding: 8px;
-
-            color: ${props => props.theme.colors.white};
 
             display: flex;
             justify-content: start;
@@ -61,7 +70,7 @@ export const ItemMenu = styled.div<ItemMenuProps>`
                         color: ${props.theme.colors.yellow_700};
                         text-shadow: 1px 0 10px ${props.theme.colors.primary};
                     `
-                }
+        }
             `}
         }
 
@@ -73,10 +82,10 @@ export const ItemMenu = styled.div<ItemMenuProps>`
 `
 
 export const IconContainer = styled.div`
+    color: ${props => props.theme.colors.white};
     display: none;
 
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 680px) {
         display: flex;
-        color: ${props => props.theme.colors.white};
     }
 `

@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { RootState } from '@/redux/store'
 import { login, setMessageLogin, setMessageRegister } from '@/redux/auth/authSlice'
 import { useRouter } from 'next/navigation';
+import { openMenu } from '@/redux/menu/menuSlice'
 
 export default function Login() {
     const dispatch = useDispatch()
@@ -37,7 +38,7 @@ export default function Login() {
     }
 
     return (
-        <Styled.Login>
+        <Styled.Main onClick={() => dispatch(openMenu(false))}>
             <Styled.ContainerLogin>
                 <Styled.TitleContainer>
                     Welcome back to <span className='title'>Bagual Viagens</span>
@@ -54,6 +55,6 @@ export default function Login() {
                     {messageLogin}
                 </Styled.Message>
             </Styled.ContainerLogin>
-        </Styled.Login>
+        </Styled.Main>
     )
 }

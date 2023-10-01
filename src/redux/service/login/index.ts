@@ -6,7 +6,6 @@ interface UserType {
     name: string;
     user_token: string;
     email: string;
-    cpf: string;
 }
 
 export function useAuth() {
@@ -22,8 +21,8 @@ export function useAuth() {
         }
     }
 
-    async function handleRegister(name: string, cpf: string, email: string, password: string) {
-        const response = await api.post('user/create', { name, cpf, email, password })
+    async function handleRegister(name: string, email: string, password: string) {
+        const response = await api.post('user/create', { name, email, password })
 
         if (response.status >= 200 && response.status < 300) {
             return true

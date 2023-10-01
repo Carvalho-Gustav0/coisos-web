@@ -15,6 +15,14 @@ export default createGlobalStyle`
         font-size: 16px;
     }
 
+    main {
+        padding-top: 66px;
+
+        @media screen and (max-width: 680px) {
+            padding-top: 88px;   
+        }
+    }
+
     a {
         text-decoration: none;
     }

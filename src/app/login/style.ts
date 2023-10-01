@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Login = styled.main`
+export const Main = styled.main`
     display: flex;
 
     position: fixed;
@@ -16,6 +16,8 @@ export const Login = styled.main`
     background-position: center;
 
     background-color: ${props => props.theme.colors.gray_900};
+
+    overflow-y: auto;
 `
 
 export const ContainerLogin = styled.div`
@@ -37,7 +39,7 @@ export const ContainerLogin = styled.div`
 
     box-shadow: 0px 0px 6px ${props => props.theme.colors.primary};
 
-    @media screen and (max-width: 576px){
+    @media screen and (max-width: 680px){
         width: 260px;
         padding-inline: 6px 6px;
     }

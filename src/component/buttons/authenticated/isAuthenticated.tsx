@@ -1,6 +1,5 @@
 'use client'
 
-import { ButtonUser } from "@/component/buttons/user/button";
 import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import * as Styled from './style'
@@ -8,6 +7,7 @@ import { useAuth } from "@/redux/service/login";
 import { logout } from "@/redux/auth/authSlice";
 import { CgLogOut, CgProfile } from 'react-icons/cg'
 import { BiLogIn, BiRegistered } from 'react-icons/bi'
+import { ItemMenu } from "@/component/menu/items";
 
 export function ButtonAuthenticated() {
     const userToken = useSelector((state: RootState) => state.rootReducer.auth.user?.user_token)
@@ -22,41 +22,19 @@ export function ButtonAuthenticated() {
 
     if (userToken === undefined) {
         return (
-            <Styled.ButtonsContainer>
-                <Styled.Buttons>
-                    <Styled.IconContainer>
-                        <BiLogIn size={20} />
-                    </Styled.IconContainer>
-                    <ButtonUser text='Login' path='/login' />
-                </Styled.Buttons>
+            <Styled.Buttons>
+                <ItemMenu path='/login' name='LOGIN' icon={<BiLogIn />} />
                 <Styled.LineButtons />
-                <Styled.Buttons>
-                    <Styled.IconContainer>
-                        <BiRegistered size={20} />
-                    </Styled.IconContainer>
-                    <ButtonUser text='Register' path='/register' />
-                </Styled.Buttons>
-            </Styled.ButtonsContainer>
+                <ItemMenu path='/register' name='REGISTER' icon={<BiRegistered />} />
+            </Styled.Buttons>
         )
     } else {
         return (
-            <Styled.ButtonsContainer>
-                <Styled.Buttons>
-                    <Styled.IconContainer>
-                        <CgProfile />
-                    </Styled.IconContainer>
-                    <ButtonUser text='Profile' path='/user/profile' />
-                </Styled.Buttons>
+            <Styled.Buttons>
+                <ItemMenu path='/profile' name='PROFILE' icon={<CgProfile />} />
                 <Styled.LineButtons />
-                <Styled.Buttons>
-                    <Styled.IconContainer>
-                        <CgLogOut size={20}/>
-                    </Styled.IconContainer>
-                    <Styled.ButtonLogout onClick={() => doLogout()}>
-                        Logout
-                    </Styled.ButtonLogout>
-                </Styled.Buttons>
-            </Styled.ButtonsContainer>
+                <ItemMenu path='/' name='LOG OUT' icon={<CgLogOut />} />
+            </Styled.Buttons>
         )
     }
 }

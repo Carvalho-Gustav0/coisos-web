@@ -5,7 +5,6 @@ interface UserType {
   name: string;
   user_token: string;
   email: string;
-  cpf: string;
 }
 
 interface AuthState {

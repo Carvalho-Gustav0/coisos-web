@@ -8,10 +8,10 @@ import { RootState } from '@/redux/store'
 import { setMessageLogin, setMessageRegister } from '@/redux/auth/authSlice'
 import { useRouter } from 'next/navigation';
 import { ListFormat } from 'typescript'
+import { openMenu } from '@/redux/menu/menuSlice'
 
 export default function Register() {
     const [name, setName] = useState<string>('')
-    const [cpf, setCPF] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
@@ -26,7 +26,7 @@ export default function Register() {
     function handleRegisterForm(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        const isRegistered = handleRegister(name, cpf, email, password)
+        const isRegistered = handleRegister(name, email, password)
         isRegistered.then(() => {
             dispatch(setMessageRegister('Success Register'))
             router.push('/login');
@@ -43,7 +43,7 @@ export default function Register() {
     }
 
     return (
-        <Styled.Register>
+        <Styled.Main onClick={() => dispatch(openMenu(false))}>
             <Styled.ContainerRegister>
                 <Styled.TitleContainer>
                     Welcome to <span className='title'>Bagual Viagens</span>
@@ -61,6 +61,6 @@ export default function Register() {
                     {messageRegister}
                 </Styled.Message>
             </Styled.ContainerRegister>
-        </Styled.Register>
+        </Styled.Main>
     )
 }
